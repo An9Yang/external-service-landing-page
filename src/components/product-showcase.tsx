@@ -1,16 +1,9 @@
 /**
  * Payzo Enhanced Product Showcase Component
- * Modern carousel with shadcn/ui Carousel component
+ * Infinite conveyor belt animation - Ouroboros style
  */
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { motion } from "motion/react";
 import {
   CreditCard,
@@ -21,10 +14,10 @@ import {
   Users,
   TrendingUp,
   Wallet,
-  Lock,
   Zap
 } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface ProductTemplate {
   id: number;
@@ -107,7 +100,11 @@ const templates: ProductTemplate[] = [
 ];
 
 export function ProductShowcase() {
+  const [isPaused, setIsPaused] = useState(false);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+
+  // Triple the templates for seamless infinite scroll
+  const infiniteTemplates = [...templates, ...templates, ...templates];
 
   return (
     <section className="section-padding bg-gradient-to-b from-background to-accent/20">
@@ -133,125 +130,201 @@ export function ProductShowcase() {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        {/* Infinite Conveyor Belt Container */}
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {templates.map((template, index) => (
-                <CarouselItem key={template.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    onMouseEnter={() => setHoveredId(template.id)}
-                    onMouseLeave={() => setHoveredId(null)}
-                    className="h-full"
-                  >
-                    <Card className="h-full card-hover relative overflow-hidden group">
-                      {/* Background Gradient */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${template.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+          {/* Gradient Masks for Smooth Edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none" />
 
-                      {template.badge && (
-                        <div className="absolute top-4 right-4">
-                          <Badge variant="secondary" className="text-xs">
-                            {template.badge}
-                          </Badge>
-                        </div>
-                      )}
-
-                      <CardHeader>
-                        <div className="mb-4">
-                          <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${template.gradient} p-2.5 text-white shadow-lg transform transition-transform duration-300 ${hoveredId === template.id ? 'scale-110 rotate-3' : ''}`}>
-                            <template.icon className="w-full h-full" />
-                          </div>
-                        </div>
-                        <CardTitle className="text-lg">{template.title}</CardTitle>
-                        <CardDescription className="text-sm">
-                          {template.description}
-                        </CardDescription>
-                      </CardHeader>
-
-                      <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                          {template.features.map((feature, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{
-                                opacity: hoveredId === template.id ? 1 : 0.7,
-                                x: hoveredId === template.id ? 0 : -10
-                              }}
-                              transition={{ delay: idx * 0.05 }}
-                              className="flex items-center gap-2 text-sm text-muted-foreground"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                              <span>{feature}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-
-                        {/* Interactive Element */}
-                        <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                            <span>Learn more</span>
-                            <motion.div
-                              animate={{ x: hoveredId === template.id ? [0, 5, 0] : 0 }}
-                              transition={{ duration: 1, repeat: Infinity }}
-                            >
-                              →
-                            </motion.div>
-                          </div>
-                        </div>
-                      </CardContent>
-
-                      {/* Animated Border */}
-                      <motion.div
-                        className="absolute inset-0 border-2 border-primary/20 rounded-lg pointer-events-none"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{
-                          opacity: hoveredId === template.id ? 1 : 0,
-                          scale: hoveredId === template.id ? 1 : 0.8
-                        }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </Card>
-                  </motion.div>
-                </CarouselItem>
+          {/* Scrolling Track */}
+          <div className="relative">
+            <div
+              className={cn(
+                "flex gap-6 py-4",
+                isPaused ? "" : "animate-[infiniteScroll_40s_linear_infinite]"
+              )}
+              style={{
+                width: `calc(${infiniteTemplates.length} * 312px)`,
+              }}
+            >
+              {infiniteTemplates.map((template, index) => (
+                <TemplateCard
+                  key={`${template.id}-${Math.floor(index / templates.length)}-${index}`}
+                  template={template}
+                  index={index}
+                  hoveredId={hoveredId}
+                  setHoveredId={setHoveredId}
+                />
               ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
-        </motion.div>
+            </div>
+          </div>
+        </div>
 
-        {/* Mobile Scroll Indicator */}
+        {/* Interaction Hint */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-center gap-2 mt-8 md:hidden"
+          className="flex items-center justify-center gap-3 mt-8"
         >
-          <div className="text-sm text-muted-foreground">Swipe to explore</div>
-          <motion.div
-            animate={{ x: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            →
-          </motion.div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <p className="text-sm text-muted-foreground">
+              {isPaused ? "Scroll paused - Explore features" : "Hover to pause and explore"}
+            </p>
+          </div>
         </motion.div>
+
+        {/* Progress Indicator */}
+        <div className="flex justify-center gap-1.5 mt-4">
+          {templates.map((_, idx) => (
+            <motion.div
+              key={idx}
+              className="h-1 rounded-full bg-border overflow-hidden"
+              initial={{ width: 6 }}
+              animate={{ width: 6 }}
+            >
+              <motion.div
+                className="h-full bg-primary rounded-full"
+                initial={{ x: "-100%" }}
+                animate={{ x: isPaused ? "-100%" : "0%" }}
+                transition={{
+                  duration: 5,
+                  delay: idx * (40 / templates.length),
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+// Separate component for template cards
+function TemplateCard({
+  template,
+  index,
+  hoveredId,
+  setHoveredId,
+}: {
+  template: ProductTemplate;
+  index: number;
+  hoveredId: number | null;
+  setHoveredId: (id: number | null) => void;
+}) {
+  const isHovered = hoveredId === template.id;
+
+  return (
+    <motion.div
+      className="flex-shrink-0 w-[288px]"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: (index % 8) * 0.05 }}
+      onMouseEnter={() => setHoveredId(template.id)}
+      onMouseLeave={() => setHoveredId(null)}
+    >
+      <Card className="h-full card-hover relative overflow-hidden group cursor-pointer">
+        {/* Background Gradient Overlay */}
+        <div
+          className={cn(
+            "absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500",
+            template.gradient,
+            isHovered && "opacity-5"
+          )}
+        />
+
+        {/* Badge */}
+        {template.badge && (
+          <div className="absolute top-4 right-4 z-[5]">
+            <Badge variant="secondary" className="text-xs shadow-sm">
+              {template.badge}
+            </Badge>
+          </div>
+        )}
+
+        <CardHeader>
+          {/* Icon */}
+          <motion.div
+            className="mb-4"
+            animate={isHovered ? { scale: 1.1, rotate: 3 } : { scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <div className={cn(
+              "w-12 h-12 rounded-lg bg-gradient-to-br p-2.5 text-white shadow-lg",
+              template.gradient
+            )}>
+              <template.icon className="w-full h-full" />
+            </div>
+          </motion.div>
+
+          <CardTitle className="text-lg line-clamp-1">{template.title}</CardTitle>
+          <CardDescription className="text-sm line-clamp-2">
+            {template.description}
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent className="space-y-4">
+          {/* Features */}
+          <div className="space-y-2">
+            {template.features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0.7, x: 0 }}
+                animate={{
+                  opacity: isHovered ? 1 : 0.7,
+                  x: isHovered ? 4 : 0
+                }}
+                transition={{ delay: idx * 0.05, duration: 0.2 }}
+                className="flex items-center gap-2 text-sm text-muted-foreground"
+              >
+                <div className={cn(
+                  "w-1.5 h-1.5 rounded-full transition-all duration-300",
+                  isHovered ? "bg-primary scale-125" : "bg-border"
+                )} />
+                <span>{feature}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            className="pt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex items-center gap-2 text-sm font-medium text-primary">
+              <span>Learn more</span>
+              <motion.span
+                animate={isHovered ? { x: [0, 5, 0] } : { x: 0 }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                →
+              </motion.span>
+            </div>
+          </motion.div>
+        </CardContent>
+
+        {/* Hover Border Effect */}
+        <motion.div
+          className="absolute inset-0 border-2 border-primary/30 rounded-lg pointer-events-none"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1 : 0.95
+          }}
+          transition={{ duration: 0.2 }}
+        />
+      </Card>
+    </motion.div>
   );
 }
