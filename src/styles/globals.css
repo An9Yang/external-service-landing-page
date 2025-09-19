@@ -20,7 +20,7 @@
     --border: 0 0% 91%;         /* Very light border #E8E8E8 */
     --input: 0 0% 95%;          /* Light input background */
 
-    --primary: 142 71% 45%;    /* Softer green #22C55E */
+    --primary: 142 40% 50%;    /* Subtle green, less saturated */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217 91% 60%;  /* Soft blue #3B82F6 */

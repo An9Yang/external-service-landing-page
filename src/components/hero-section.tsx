@@ -8,9 +8,9 @@ import { ArrowRight, Globe, Folder, FileText, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 
 const features = [
-  { icon: Globe, label: "Clone Website", color: "bg-green-500" },
-  { icon: Folder, label: "Create Portfolio", color: "bg-blue-500" },
-  { icon: FileText, label: "Build Notion Blog", color: "bg-orange-500" }
+  { icon: Globe, label: "Clone Website", color: "bg-gray-600" },
+  { icon: Folder, label: "Create Portfolio", color: "bg-gray-700" },
+  { icon: FileText, label: "Build Notion Blog", color: "bg-gray-500" }
 ];
 
 export function HeroSection() {
@@ -132,36 +132,6 @@ export function HeroSection() {
               <div>Ship in seconds</div>
             </div>
           </motion.div>
-        </motion.div>
-
-        {/* Optional: Preview Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-20 max-w-5xl mx-auto"
-        >
-          <div className="bg-white rounded-2xl border border-border p-8 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { title: "Dashboard", desc: "Analytics at a glance", icon: "📊" },
-                { title: "Projects", desc: "Manage your work", icon: "📁" },
-                { title: "Templates", desc: "Ready to use", icon: "🎨" }
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 1 + idx * 0.1 }}
-                  className="p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors cursor-pointer"
-                >
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <h3 className="font-medium text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

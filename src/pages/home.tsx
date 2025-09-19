@@ -6,7 +6,7 @@ import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { ProductShowcase } from "@/components/product-showcase";
 import { StatsSection } from "@/components/stats-section";
-import { HomepageLayouts } from "@/components/homepage-layouts";
+import { UseCases } from "@/components/use-cases";
 import { FinalCTA } from "@/components/final-cta";
 
 export default function Home() {
@@ -26,8 +26,8 @@ export default function Home() {
         {/* 统计数据区域 */}
         <StatsSection />
 
-        {/* 主页布局展示 - 3个 Homepage 布局 */}
-        <HomepageLayouts />
+        {/* Use Cases - 展示服务能力 */}
+        <UseCases />
 
         {/* 最终 CTA 区域 */}
         <FinalCTA />
