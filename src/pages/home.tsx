@@ -8,16 +8,12 @@ import { ProductShowcase } from "@/components/product-showcase";
 import { StatsSection } from "@/components/stats-section";
 import { HomepageLayouts } from "@/components/homepage-layouts";
 import { FinalCTA } from "@/components/final-cta";
-import { FixedSidebar } from "@/components/fixed-sidebar";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* 导航栏 */}
       <Header />
-
-      {/* 固定侧边栏 - 右侧按钮组 */}
-      <FixedSidebar />
 
       {/* 主内容区域 */}
       <main>
