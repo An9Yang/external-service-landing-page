@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* Shadcn Default Colors */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -19,11 +20,11 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
 
-    --primary: 240 5.9% 10%;
+    --primary: 142 76% 36%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 158 64% 52%;
+    --secondary-foreground: 0 0% 98%;
 
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
@@ -31,9 +32,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 240 10% 3.9%;
+    --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --chart-1: 12 76% 61%;
 
@@ -129,54 +130,189 @@
   }
 }
 
+/* Animation Utilities */
+@layer utilities {
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
 /* Grid Background Pattern */
-.bg-grid-slate-100 {
-  background-image: linear-gradient(
-      rgba(148, 163, 184, 0.1) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(142, 197, 114, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(142, 197, 114, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(142, 197, 114, 0.1) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Payzo 品牌渐变按钮 */
+/* Enhanced Gradient Styles */
 .btn-gradient {
   background: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(158 64% 52%) 100%);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, hsl(142 76% 40%) 0%, hsl(158 64% 56%) 100%);
+  transition: left 0.3s ease;
+}
+
+.btn-gradient:hover::before {
+  left: 0;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(135deg, hsl(142 76% 32%) 0%, hsl(158 64% 48%) 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
 }
 
-/* Payzo 品牌渐变文字 */
-.text-brand-gradient {
+/* Text Gradient Effects */
+.text-gradient {
   background: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(158 64% 52%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* 自定义悬停效果 */
+.text-gradient-animated {
+  background: linear-gradient(135deg, hsl(142 76% 36%), hsl(158 64% 52%), hsl(142 76% 36%));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Interactive Hover Effects */
 .hover-lift {
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.hover-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+}
+
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Card Styles */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid hsl(var(--border));
+}
+
+.card-hover:hover {
+  border-color: hsl(var(--primary) / 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* 渐变按钮辅助样式 */
-.btn-outline-gradient {
-  background: transparent;
-  border: 1px solid hsl(240 6% 90%);
-  transition: all 0.2s ease;
+/* Glass Morphism */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.btn-outline-gradient:hover {
-  background: hsl(240 5% 96%);
-  border-color: hsl(240 5% 84%);
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Section Spacing */
+.section-padding {
+  @apply py-16 sm:py-20 md:py-24 lg:py-32;
+}
+
+.container-width {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Typography Utilities */
+.heading-hero {
+  @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+}
+
+.heading-1 {
+  @apply text-3xl sm:text-4xl md:text-5xl font-semibold;
+}
+
+.heading-2 {
+  @apply text-2xl sm:text-3xl md:text-4xl font-semibold;
+}
+
+.heading-3 {
+  @apply text-xl sm:text-2xl md:text-3xl font-medium;
+}
+
+.body-large {
+  @apply text-lg sm:text-xl leading-relaxed;
 }

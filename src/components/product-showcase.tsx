@@ -1,237 +1,256 @@
 /**
- * Payzo 产品展示区域组件
- * 展示 5 个网站模板预览 - 真正的衔尾蛇无限轮播效果
+ * Payzo Enhanced Product Showcase Component
+ * Modern carousel with shadcn/ui Carousel component
  */
-import { Card } from "@/components/ui/card";
-import { useState, useEffect, useRef } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { motion } from "motion/react";
+import {
+  CreditCard,
+  Shield,
+  Smartphone,
+  Globe,
+  BarChart3,
+  Users,
+  TrendingUp,
+  Wallet,
+  Lock,
+  Zap
+} from "lucide-react";
+import { useState } from "react";
 
 interface ProductTemplate {
   id: number;
   title: string;
   description: string;
-  imageUrl: string;
-  bgColor: string;
+  icon: React.ElementType;
+  features: string[];
+  badge?: string;
+  gradient: string;
 }
 
 const templates: ProductTemplate[] = [
   {
     id: 1,
-    title: "All",
-    description: "Complete website template",
-    imageUrl: "/api/placeholder/300/400",
-    bgColor: "bg-slate-50"
+    title: "Complete Dashboard",
+    description: "Full-featured financial dashboard with real-time analytics",
+    icon: BarChart3,
+    features: ["Real-time data", "Custom widgets", "Dark mode"],
+    badge: "Most Popular",
+    gradient: "from-blue-500 to-cyan-500"
   },
   {
     id: 2,
-    title: "Integrate with 100+ tools",
-    description: "Integration dashboard",
-    imageUrl: "/api/placeholder/300/400",
-    bgColor: "bg-white"
+    title: "Payment Gateway",
+    description: "Secure payment processing with multiple providers",
+    icon: CreditCard,
+    features: ["PCI compliant", "Multi-currency", "Fraud detection"],
+    badge: "Enterprise",
+    gradient: "from-purple-500 to-pink-500"
   },
   {
     id: 3,
-    title: "We're An Award Winning Finance Company",
-    description: "About page template",
-    imageUrl: "/api/placeholder/300/400",
-    bgColor: "bg-white"
+    title: "Mobile Banking",
+    description: "Complete mobile banking solution for iOS & Android",
+    icon: Smartphone,
+    features: ["Biometric auth", "Push notifications", "Offline mode"],
+    gradient: "from-green-500 to-emerald-500"
   },
   {
     id: 4,
-    title: "Banking made easy for busy professionals",
-    description: "Hero section template",
-    imageUrl: "/api/placeholder/300/400",
-    bgColor: "bg-teal-600"
+    title: "International Transfers",
+    description: "Global money transfers with competitive rates",
+    icon: Globe,
+    features: ["150+ countries", "Real-time rates", "Low fees"],
+    gradient: "from-orange-500 to-red-500"
   },
   {
     id: 5,
-    title: "A complete payment gateway solution for your business",
-    description: "Payment template",
-    imageUrl: "/api/placeholder/300/400",
-    bgColor: "bg-white"
+    title: "Business Analytics",
+    description: "Advanced analytics and reporting tools",
+    icon: TrendingUp,
+    features: ["AI insights", "Custom reports", "Data export"],
+    badge: "New",
+    gradient: "from-indigo-500 to-purple-500"
+  },
+  {
+    id: 6,
+    title: "Digital Wallet",
+    description: "Secure digital wallet with card management",
+    icon: Wallet,
+    features: ["Virtual cards", "Contactless pay", "Rewards"],
+    gradient: "from-teal-500 to-green-500"
+  },
+  {
+    id: 7,
+    title: "KYC & Compliance",
+    description: "Automated KYC and AML compliance tools",
+    icon: Shield,
+    features: ["ID verification", "Risk scoring", "Regulatory reports"],
+    gradient: "from-red-500 to-pink-500"
+  },
+  {
+    id: 8,
+    title: "Team Management",
+    description: "Multi-user access with role-based permissions",
+    icon: Users,
+    features: ["Role management", "Audit logs", "SSO support"],
+    gradient: "from-blue-500 to-indigo-500"
   }
 ];
 
 export function ProductShowcase() {
-  const [currentPosition, setCurrentPosition] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // 创建无限循环的卡片数组：原始序列重复多次，确保无缝循环
-  const infiniteTemplates = [...templates, ...templates, ...templates];
-  
-  const cardWidth = 280; // 卡片宽度 + 间距
-  const totalOriginalWidth = templates.length * cardWidth;
-  
-  // 衔尾蛇无限滚动效果
-  useEffect(() => {
-    if (isHovered) return; // 鼠标悬停时暂停
-    
-    const interval = setInterval(() => {
-      setCurrentPosition(prev => {
-        const newPosition = prev + 1; // 每次移动1px，丝滑滚动
-        
-        // 当滚动超过第一个完整序列时，重置到开始位置
-        // 这样就实现了真正的无缝循环
-        if (newPosition >= totalOriginalWidth) {
-          return 0;
-        }
-        
-        return newPosition;
-      });
-    }, 16); // 60fps
-    
-    return () => clearInterval(interval);
-  }, [isHovered, totalOriginalWidth]);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 产品模板轮播容器 */}
-        <div 
-          className="relative overflow-hidden"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+    <section className="section-padding bg-gradient-to-b from-background to-accent/20">
+      <div className="container-width">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <div 
-            ref={containerRef}
-            className="flex gap-4 will-change-transform"
-            style={{
-              transform: `translateX(-${currentPosition}px)`,
-              width: `${infiniteTemplates.length * cardWidth}px`
+          <Badge variant="outline" className="mb-4">
+            <Zap className="w-3 h-3 mr-1" />
+            Features
+          </Badge>
+          <h2 className="heading-2 text-foreground mb-4">
+            Everything you need to build a
+            <span className="text-gradient"> modern fintech</span>
+          </h2>
+          <p className="body-large text-muted-foreground max-w-2xl mx-auto">
+            Choose from our collection of pre-built templates and components
+            designed specifically for financial applications
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
             }}
+            className="w-full"
           >
-            {infiniteTemplates.map((template, index) => (
-              <Card 
-                key={`${template.id}-${Math.floor(index / templates.length)}-${index}`}
-                className="hover-lift cursor-pointer border border-border-light rounded-2xl overflow-hidden flex-shrink-0 w-64 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              >
-                <div className={`aspect-[3/4] ${template.bgColor} relative overflow-hidden p-4`}>
-                  {/* Card 1 - All */}
-                  {template.id === 1 && (
-                    <div className="h-full flex flex-col items-center justify-center text-center">
-                      <div className="text-lg font-semibold text-slate-900 mb-8">All</div>
-                      <div className="w-16 h-16 bg-slate-300 rounded-lg mb-8 flex items-center justify-center">
-                        <div className="w-8 h-8 bg-slate-500 rounded"></div>
-                      </div>
-                      <div className="text-2xl font-bold text-slate-900">$59</div>
-                    </div>
-                  )}
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {templates.map((template, index) => (
+                <CarouselItem key={template.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    onMouseEnter={() => setHoveredId(template.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    className="h-full"
+                  >
+                    <Card className="h-full card-hover relative overflow-hidden group">
+                      {/* Background Gradient */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${template.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
-                  {/* Card 2 - Integration */}
-                  {template.id === 2 && (
-                    <div className="h-full p-4">
-                      <div className="text-base font-semibold text-slate-900 mb-6">
-                        Integrate with 100+ tools
-                      </div>
-                      
-                      {/* Tool icons row */}
-                      <div className="flex gap-2 mb-6">
-                        <div className="w-6 h-6 bg-blue-500 rounded"></div>
-                        <div className="w-6 h-6 bg-red-500 rounded"></div>
-                        <div className="w-6 h-6 bg-orange-500 rounded"></div>
-                        <div className="w-6 h-6 bg-purple-500 rounded"></div>
-                      </div>
+                      {template.badge && (
+                        <div className="absolute top-4 right-4">
+                          <Badge variant="secondary" className="text-xs">
+                            {template.badge}
+                          </Badge>
+                        </div>
+                      )}
 
-                      {/* Integration grid */}
-                      <div className="grid grid-cols-3 gap-2 mb-4">
-                        {[...Array(9)].map((_, i) => (
-                          <div key={i} className="h-10 bg-slate-100 rounded border flex items-center justify-center">
-                            <div className="w-4 h-4 bg-slate-400 rounded"></div>
+                      <CardHeader>
+                        <div className="mb-4">
+                          <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${template.gradient} p-2.5 text-white shadow-lg transform transition-transform duration-300 ${hoveredId === template.id ? 'scale-110 rotate-3' : ''}`}>
+                            <template.icon className="w-full h-full" />
                           </div>
-                        ))}
-                      </div>
-                      
-                      <div className="text-xs text-slate-600 text-center">
-                        Have more questions?<br />
-                        Don't hesitate to reach us
-                      </div>
-                    </div>
-                  )}
+                        </div>
+                        <CardTitle className="text-lg">{template.title}</CardTitle>
+                        <CardDescription className="text-sm">
+                          {template.description}
+                        </CardDescription>
+                      </CardHeader>
 
-                  {/* Card 3 - About */}
-                  {template.id === 3 && (
-                    <div className="h-full flex flex-col">
-                      <div className="text-base font-semibold text-slate-900 mb-4 text-center">
-                        We're An Award Winning Finance Company
-                      </div>
-                      
-                      {/* Team image placeholder */}
-                      <div className="flex-1 bg-slate-200 rounded-lg mb-3 relative overflow-hidden">
-                        {/* 模拟团队照片 */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-300 to-slate-400"></div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-teal-600 text-white p-2 text-xs text-center">
-                          The numbers reflect our reputation.
+                      <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                          {template.features.map((feature, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{
+                                opacity: hoveredId === template.id ? 1 : 0.7,
+                                x: hoveredId === template.id ? 0 : -10
+                              }}
+                              transition={{ delay: idx * 0.05 }}
+                              className="flex items-center gap-2 text-sm text-muted-foreground"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                              <span>{feature}</span>
+                            </motion.div>
+                          ))}
                         </div>
-                      </div>
-                    </div>
-                  )}
 
-                  {/* Card 4 - Banking */}
-                  {template.id === 4 && (
-                    <div className="h-full bg-teal-600 text-white p-4 flex flex-col">
-                      <div className="text-base font-semibold mb-6">
-                        Banking made easy for busy professionals.
-                      </div>
-                      
-                      {/* Banking card */}
-                      <div className="bg-white/20 rounded-lg p-4 mb-4 backdrop-blur-sm">
-                        <div className="text-xl font-bold mb-1">$52.49</div>
-                        <div className="text-xs opacity-90">Goal: 75%+ 92+</div>
-                      </div>
-                      
-                      <div className="text-xs opacity-90 mb-4">
-                        Super convenient online banking
-                      </div>
-                      
-                      {/* Feature icons */}
-                      <div className="grid grid-cols-3 gap-2 mt-auto">
-                        <div className="h-8 bg-white/20 rounded flex items-center justify-center">
-                          <div className="w-4 h-4 bg-white/60 rounded"></div>
+                        {/* Interactive Element */}
+                        <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                            <span>Learn more</span>
+                            <motion.div
+                              animate={{ x: hoveredId === template.id ? [0, 5, 0] : 0 }}
+                              transition={{ duration: 1, repeat: Infinity }}
+                            >
+                              →
+                            </motion.div>
+                          </div>
                         </div>
-                        <div className="h-8 bg-white/20 rounded flex items-center justify-center">
-                          <div className="w-4 h-4 bg-white/60 rounded"></div>
-                        </div>
-                        <div className="h-8 bg-white/20 rounded flex items-center justify-center">
-                          <div className="w-4 h-4 bg-white/60 rounded"></div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                      </CardContent>
 
-                  {/* Card 5 - Payment Gateway */}
-                  {template.id === 5 && (
-                    <div className="h-full p-4">
-                      <div className="text-base font-semibold text-slate-900 mb-6">
-                        A complete payment getaway solution for your business
-                      </div>
-                      
-                      {/* Payment form simulation */}
-                      <div className="space-y-3 mb-6">
-                        <div className="h-8 bg-slate-100 rounded border"></div>
-                        <div className="h-8 bg-slate-100 rounded border"></div>
-                        <div className="h-8 bg-brand-gradient-start text-white rounded flex items-center justify-center text-sm font-medium">
-                          Submit Payment
-                        </div>
-                      </div>
-                      
-                      {/* Stats */}
-                      <div className="text-xs text-slate-600 flex items-center gap-2">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                        </div>
-                        <span>We've worked with 200+ projects with 500+ clients</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
+                      {/* Animated Border */}
+                      <motion.div
+                        className="absolute inset-0 border-2 border-primary/20 rounded-lg pointer-events-none"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{
+                          opacity: hoveredId === template.id ? 1 : 0,
+                          scale: hoveredId === template.id ? 1 : 0.8
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </motion.div>
+
+        {/* Mobile Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex items-center justify-center gap-2 mt-8 md:hidden"
+        >
+          <div className="text-sm text-muted-foreground">Swipe to explore</div>
+          <motion.div
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            →
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
