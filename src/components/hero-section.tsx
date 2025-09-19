@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Globe, Folder, FileText, Sparkles } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const features = [
-  { icon: Globe, label: "Clone Website", color: "bg-gray-600" },
-  { icon: Folder, label: "Create Portfolio", color: "bg-gray-700" },
-  { icon: FileText, label: "Build Notion Blog", color: "bg-gray-500" }
+  { icon: Globe, label: "Clone Website", color: "bg-green-500" },
+  { icon: Folder, label: "Create Portfolio", color: "bg-blue-500" },
+  { icon: FileText, label: "Build Notion Blog", color: "bg-orange-500" }
 ];
 
 export function HeroSection() {
@@ -61,21 +61,8 @@ export function HeroSection() {
                 placeholder="Ship with Step1 AI"
                 className="border-0 bg-transparent text-lg px-4 py-6 pr-12 focus-visible:ring-0 placeholder:text-muted-foreground/50"
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 20h9"/>
-                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                  </svg>
-                </button>
-                <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="10" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                  </svg>
-                </button>
-                <div className="w-px h-6 bg-border" />
-                <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+              <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                <button className="p-2 hover:bg-muted rounded-lg transition-colors" title="AI-Powered">
                   <Sparkles className="h-5 w-5 text-muted-foreground" />
                 </button>
               </div>

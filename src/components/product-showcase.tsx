@@ -3,7 +3,7 @@
  */
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import {
   Globe,
   ShoppingBag,
@@ -147,7 +147,7 @@ const clientProjects: ClientProject[] = [
 
 export function ProductShowcase() {
   const [isPaused, setIsPaused] = useState(false);
-  const infiniteProjects = [...clientProjects, ...clientProjects, ...clientProjects];
+  const infiniteProjects = [...clientProjects, ...clientProjects];
 
   return (
     <section className="section-padding bg-muted/30">
@@ -173,16 +173,17 @@ export function ProductShowcase() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
+          {/* Enhanced Gradient Masks with stronger fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#fafaf9] via-[#fafaf9]/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#fafaf9] via-[#fafaf9]/80 to-transparent z-10 pointer-events-none" />
 
           {/* Scrolling Container */}
           <div className="relative">
             <div
               className={cn(
                 "flex gap-4 py-4",
-                isPaused ? "" : "animate-[infiniteScroll_60s_linear_infinite]"
+                isPaused ? "[animation-play-state:paused]" : "[animation-play-state:running]",
+                "animate-[infiniteScroll_40s_linear_infinite]"
               )}
               style={{
                 width: `calc(${infiniteProjects.length} * 320px)`,

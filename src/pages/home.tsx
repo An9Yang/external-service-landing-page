@@ -8,6 +8,7 @@ import { ProductShowcase } from "@/components/product-showcase";
 import { StatsSection } from "@/components/stats-section";
 import { UseCases } from "@/components/use-cases";
 import { FinalCTA } from "@/components/final-cta";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -32,6 +33,9 @@ export default function Home() {
         {/* 最终 CTA 区域 */}
         <FinalCTA />
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
