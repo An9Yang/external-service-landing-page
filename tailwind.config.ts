@@ -17,16 +17,13 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Payzo 设计系统颜色
-        'brand-primary': 'hsl(142 76% 36%)',
-        'brand-gradient-start': 'hsl(142 76% 36%)',
-        'brand-gradient-end': 'hsl(158 64% 52%)',
-        'foreground-secondary': 'hsl(240 5% 45%)',
-        'foreground-muted': 'hsl(240 4% 65%)',
-        'surface': 'hsl(0 0% 98%)',
-        'surface-secondary': 'hsl(240 5% 96%)',
-        'border-light': 'hsl(240 6% 90%)',
-        'border-medium': 'hsl(240 5% 84%)',
+        // Notion-inspired colors
+        'notion-gray': '#37352F',
+        'notion-bg': '#FAFAF9',
+        'notion-border': '#E8E8E7',
+        'step-green': '#22C55E',
+        'step-blue': '#3B82F6',
+        'step-orange': '#FB923C',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

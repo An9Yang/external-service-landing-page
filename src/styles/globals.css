@@ -4,37 +4,37 @@
 
 @layer base {
   :root {
-    /* Shadcn Default Colors */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* Notion-inspired Minimal Colors */
+    --background: 40 20% 98%;  /* Warm off-white #FAFAF9 */
+    --foreground: 33 5% 21%;   /* Dark gray #37352F */
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 40 6% 95%;        /* Light gray background */
+    --muted-foreground: 0 0% 42%;  /* Medium gray text */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 33 5% 21%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;          /* Pure white cards */
+    --card-foreground: 33 5% 21%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
+    --border: 0 0% 91%;         /* Very light border #E8E8E8 */
+    --input: 0 0% 95%;          /* Light input background */
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 142 71% 45%;    /* Softer green #22C55E */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 158 64% 52%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 217 91% 60%;  /* Soft blue #3B82F6 */
+    --secondary-foreground: 0 0% 100%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 40 6% 95%;        /* Very light accent */
+    --accent-foreground: 33 5% 21%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 72% 51%;  /* Softer red */
+    --destructive-foreground: 0 0% 100%;
 
-    --ring: 142 76% 36%;
+    --ring: 0 0% 85%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     --chart-1: 12 76% 61%;
 
@@ -179,121 +179,154 @@
   }
 }
 
-/* Grid Background Pattern */
+/* Notion-style Background Patterns */
 .bg-grid-pattern {
   background-image:
-    linear-gradient(rgba(142, 197, 114, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(142, 197, 114, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.bg-dot-pattern {
-  background-image: radial-gradient(circle at 1px 1px, rgba(142, 197, 114, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Enhanced Gradient Styles */
+.bg-dot-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Notion-style Button Styles */
+.btn-primary {
+  background: hsl(var(--primary));
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary {
+  background: hsl(var(--secondary));
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: hsl(var(--foreground));
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background: hsl(var(--muted));
+}
+
+/* Legacy gradient button fallback */
 .btn-gradient {
-  background: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(158 64% 52%) 100%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-gradient::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, hsl(142 76% 40%) 0%, hsl(158 64% 56%) 100%);
-  transition: left 0.3s ease;
-}
-
-.btn-gradient:hover::before {
-  left: 0;
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+  transition: all 0.2s ease;
 }
 
 .btn-gradient:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* Text Gradient Effects */
-.text-gradient {
-  background: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(158 64% 52%) 100%);
+/* Notion-style Text Effects */
+.text-primary {
+  color: hsl(var(--primary));
+}
+
+.text-secondary {
+  color: hsl(var(--secondary));
+}
+
+.text-accent {
+  color: hsl(var(--foreground) / 0.8);
+}
+
+.text-notion-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.text-gradient-animated {
-  background: linear-gradient(135deg, hsl(142 76% 36%), hsl(158 64% 52%), hsl(142 76% 36%));
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Interactive Hover Effects */
+/* Notion-style Hover Effects */
 .hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.hover-glow {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.hover-card {
+  transition: all 0.2s ease;
 }
 
-.hover-glow:hover {
-  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+.hover-card:hover {
+  background: hsl(var(--muted));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .hover-scale {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease;
 }
 
 .hover-scale:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
-/* Card Styles */
-.card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Notion-style Card */
+.notion-card {
+  background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
 }
 
-.card-hover:hover {
-  border-color: hsl(var(--primary) / 0.3);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+.notion-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-color: hsl(var(--border) / 0.8);
 }
 
-/* Glass Morphism */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.card-minimal {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
-.glass-dark {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.card-minimal:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Notion-style Subtle Effects */
+.notion-shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.notion-shadow-md {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.notion-shadow-lg {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.notion-border {
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* Section Spacing */
@@ -305,23 +338,27 @@
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Typography Utilities */
+/* Notion Typography */
 .heading-hero {
-  @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground;
 }
 
 .heading-1 {
-  @apply text-3xl sm:text-4xl md:text-5xl font-semibold;
+  @apply text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground;
 }
 
 .heading-2 {
-  @apply text-2xl sm:text-3xl md:text-4xl font-semibold;
+  @apply text-xl sm:text-2xl md:text-3xl font-semibold text-foreground;
 }
 
 .heading-3 {
-  @apply text-xl sm:text-2xl md:text-3xl font-medium;
+  @apply text-lg sm:text-xl md:text-2xl font-medium text-foreground;
 }
 
 .body-large {
-  @apply text-lg sm:text-xl leading-relaxed;
+  @apply text-base sm:text-lg leading-relaxed text-muted-foreground;
+}
+
+.body-regular {
+  @apply text-sm sm:text-base leading-relaxed text-muted-foreground;
 }

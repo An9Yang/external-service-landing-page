@@ -11,7 +11,7 @@ import { FinalCTA } from "@/components/final-cta";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* 导航栏 */}
       <Header />
 
