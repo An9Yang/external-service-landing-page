@@ -1,10 +1,7 @@
 /**
- * Step1 Footer - Minimal and Professional
+ * Step1 Footer - Clean and Minimal
  */
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ArrowRight, Globe, Github, Twitter, Linkedin, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import { Globe, Github, Twitter, Linkedin } from "lucide-react";
 
 const footerLinks = {
   product: [
@@ -42,33 +39,8 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-border bg-background">
-      {/* Newsletter Section */}
-      <div className="border-b border-border">
-        <div className="container-width py-12">
-          <div className="max-w-2xl">
-            <h3 className="text-2xl font-bold text-foreground mb-3">
-              Stay Updated
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Get the latest updates on our services and exclusive offers for your next project.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 h-11 px-4 border-border"
-              />
-              <Button className="h-11 px-6 bg-foreground text-background hover:bg-foreground/90">
-                Subscribe
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
-      <div className="container-width py-12">
+      <div className="container-width py-16">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
           {/* Brand Column */}
           <div className="col-span-2">
@@ -83,7 +55,7 @@ export function Footer() {
                 Your trusted partner for turning ideas into exceptional digital products.
               </p>
               {/* Social Links */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pt-2">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
@@ -165,7 +137,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border">
+        <div className="mt-16 pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="text-sm text-muted-foreground">
               © 2024 Step1. All rights reserved.
