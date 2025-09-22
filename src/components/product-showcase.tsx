@@ -338,17 +338,20 @@ export function ProductShowcase() {
         <div
           className="relative overflow-hidden"
           onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          onMouseLeave={() => {
+            setIsPaused(false);
+            setHoveredProject(null);
+          }}
         >
           {/* Enhanced Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#fafaf9] via-[#fafaf9]/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#fafaf9] via-[#fafaf9]/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#fafaf9] via-[#fafaf9]/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#fafaf9] via-[#fafaf9]/80 to-transparent z-20 pointer-events-none" />
 
           {/* Scrolling Container */}
           <div className="relative">
             <div
               className={cn(
-                "flex gap-6 py-4",
+                "flex gap-6 py-8",
                 isPaused ? "[animation-play-state:paused]" : "[animation-play-state:running]",
                 "animate-[infiniteScroll_45s_linear_infinite]"
               )}
@@ -361,8 +364,19 @@ export function ProductShowcase() {
                   key={`${project.id}-${Math.floor(index / clientProjects.length)}`}
                   project={project}
                   isHovered={hoveredProject === project.id}
-                  onHover={() => setHoveredProject(project.id)}
-                  onLeave={() => setHoveredProject(null)}
+                  isAnyHovered={hoveredProject !== null}
+                  onHover={() => {
+                    setHoveredProject(project.id);
+                    setIsPaused(true);
+                  }}
+                  onLeave={() => {
+                    setHoveredProject(null);
+                    setTimeout(() => {
+                      if (hoveredProject === null) {
+                        setIsPaused(false);
+                      }
+                    }, 300);
+                  }}
                 />
               ))}
             </div>
@@ -398,38 +412,82 @@ export function ProductShowcase() {
 function ProjectCard({
   project,
   isHovered,
+  isAnyHovered,
   onHover,
   onLeave
 }: {
   project: ClientProject;
   isHovered: boolean;
+  isAnyHovered: boolean;
   onHover: () => void;
   onLeave: () => void;
 }) {
   return (
     <motion.div
-      className="flex-shrink-0 w-[480px] h-[280px] relative group cursor-pointer"
+      className="flex-shrink-0 w-[480px] h-[280px] relative cursor-pointer"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.3 }}
+      animate={{
+        scale: isHovered ? 1.12 : isAnyHovered ? 0.96 : 1,
+        opacity: isHovered ? 1 : isAnyHovered ? 0.7 : 1,
+        zIndex: isHovered ? 10 : 0,
+      }}
+      transition={{
+        scale: {
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          duration: 0.4
+        },
+        opacity: {
+          duration: 0.3,
+          ease: "easeOut"
+        }
+      }}
+      style={{
+        transformOrigin: "center center",
+        willChange: "transform"
+      }}
     >
       {/* Main Visual Card */}
-      <div className={cn(
-        "w-full h-full rounded-xl overflow-hidden relative",
-        "bg-gradient-to-br",
-        project.gradient,
-        "shadow-lg hover:shadow-xl transition-all duration-300"
-      )}>
+      <motion.div
+        className={cn(
+          "w-full h-full rounded-xl overflow-hidden relative",
+          "bg-gradient-to-br",
+          project.gradient,
+        )}
+        animate={{
+          boxShadow: isHovered
+            ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+            : "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
+        }}
+        transition={{
+          boxShadow: {
+            duration: 0.4,
+            ease: [0.4, 0, 0.2, 1]
+          }
+        }}
+      >
         {/* Status Badge */}
         {project.status && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 20 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              scale: isHovered ? 1 : 0.8,
+              x: 0
+            }}
+            transition={{
+              duration: 0.25,
+              delay: isHovered ? 0.1 : 0,
+              ease: [0.4, 0, 0.2, 1]
+            }}
             className="absolute top-4 right-4 z-20"
           >
-            <Badge variant="secondary" className="bg-white/90 backdrop-blur text-foreground border-0">
+            <Badge
+              variant="secondary"
+              className="bg-white/95 backdrop-blur-md text-foreground border-0 shadow-lg"
+            >
               {project.status === 'live' && 'LIVE'}
               {project.status === 'new' && 'NEW'}
               {project.status === 'featured' && 'FEATURED'}
@@ -438,58 +496,110 @@ function ProjectCard({
         )}
 
         {/* Project Mockup Visual */}
-        <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            scale: isHovered ? 1.05 : 1
+          }}
+          transition={{
+            scale: {
+              duration: 0.6,
+              ease: [0.4, 0, 0.2, 1]
+            }
+          }}
+        >
           {project.mockup}
-        </div>
+        </motion.div>
 
         {/* Hover Overlay - Slides up from bottom */}
         <motion.div
           initial={{ y: "100%" }}
-          animate={{ y: isHovered ? 0 : "100%" }}
+          animate={{
+            y: isHovered ? 0 : "100%",
+          }}
           transition={{
             type: "spring",
-            stiffness: 400,
-            damping: 30
+            stiffness: 380,
+            damping: 28,
+            mass: 0.8
           }}
-          className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black/80 via-black/60 to-transparent backdrop-blur-sm"
+          className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black/85 via-black/65 to-transparent backdrop-blur-md"
         >
-          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
+          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3">
             {/* Client Name & Type */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{
+                opacity: isHovered ? 1 : 0,
+                y: isHovered ? 0 : 30,
+              }}
+              transition={{
+                delay: isHovered ? 0.15 : 0,
+                duration: 0.35,
+                ease: [0.4, 0, 0.2, 1]
+              }}
             >
-              <h3 className="text-xl font-semibold text-white mb-1">
+              <h3 className="text-2xl font-semibold text-white mb-1.5">
                 {project.clientName}
               </h3>
               <div className="flex items-center gap-3">
-                <span className="text-white/70 text-sm">{project.projectType}</span>
+                <span className="text-white/80 text-sm font-medium">{project.projectType}</span>
                 <span className="text-white/30">•</span>
-                <span className="text-white/70 text-sm">{project.category}</span>
+                <span className="text-white/80 text-sm">{project.category}</span>
               </div>
             </motion.div>
 
             {/* Key Deliverable */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-              transition={{ delay: 0.15 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{
+                opacity: isHovered ? 1 : 0,
+                y: isHovered ? 0 : 30
+              }}
+              transition={{
+                delay: isHovered ? 0.2 : 0,
+                duration: 0.35,
+                ease: [0.4, 0, 0.2, 1]
+              }}
               className="flex items-center justify-between"
             >
-              <div className="flex items-center gap-2">
-                <div className={cn("w-7 h-7 rounded-md flex items-center justify-center", project.accentColor)}>
-                  <project.icon className="w-3.5 h-3.5 text-white" />
-                </div>
-                <span className="text-white/80 text-sm">
+              <div className="flex items-center gap-2.5">
+                <motion.div
+                  className={cn("w-8 h-8 rounded-lg flex items-center justify-center", project.accentColor)}
+                  animate={{
+                    rotate: isHovered ? 360 : 0
+                  }}
+                  transition={{
+                    rotate: {
+                      duration: 0.6,
+                      ease: [0.4, 0, 0.2, 1]
+                    }
+                  }}
+                >
+                  <project.icon className="w-4 h-4 text-white" />
+                </motion.div>
+                <span className="text-white/90 text-sm font-medium">
                   {project.deliverable}
                 </span>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-white/50" />
+              <motion.div
+                animate={{
+                  x: isHovered ? 5 : 0,
+                  opacity: isHovered ? 1 : 0.5
+                }}
+                transition={{
+                  x: {
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }
+                }}
+              >
+                <ArrowUpRight className="w-5 h-5 text-white" />
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
