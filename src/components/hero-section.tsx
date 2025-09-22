@@ -3,7 +3,7 @@
  */
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Globe, Folder, FileText, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -55,13 +55,13 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="relative max-w-xl mx-auto"
           >
-            <div className="relative bg-white rounded-2xl border border-border shadow-sm p-2">
-              <Input
-                type="text"
-                placeholder="Ship with Step1 AI"
-                className="border-0 bg-transparent text-lg px-4 py-6 pr-12 focus-visible:ring-0 placeholder:text-muted-foreground/50"
+            <div className="relative bg-white rounded-2xl border border-border shadow-sm p-3">
+              <Textarea
+                placeholder="Describe your idea and let Step1 AI bring it to life..."
+                className="border-0 bg-transparent text-lg px-4 py-3 pr-14 min-h-[100px] resize-none focus-visible:ring-0 placeholder:text-muted-foreground/50"
+                rows={3}
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2">
+              <div className="absolute right-3 bottom-3">
                 <button className="p-2 hover:bg-muted rounded-lg transition-colors" title="AI-Powered">
                   <Sparkles className="h-5 w-5 text-muted-foreground" />
                 </button>

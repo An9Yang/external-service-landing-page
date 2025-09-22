@@ -4,6 +4,7 @@
  */
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
+import { LogoCarousel } from "@/components/logo-carousel";
 import { ProductShowcase } from "@/components/product-showcase";
 import { StatsSection } from "@/components/stats-section";
 import { UseCases } from "@/components/use-cases";
@@ -20,6 +21,9 @@ export default function Home() {
       <main>
         {/* Hero 区域 */}
         <HeroSection />
+
+        {/* Logo 传送带 */}
+        <LogoCarousel />
 
         {/* 产品展示区域 - 5个模板预览 */}
         <ProductShowcase />
