@@ -34,32 +34,29 @@ interface ClientProject {
 const clientProjects: ClientProject[] = [
   {
     id: 1,
-    clientName: "TechFlow",
+    clientName: "TechFlow Solutions",
     projectType: "SaaS Platform",
     category: "Technology",
     deliverable: "B2B Dashboard",
-    gradient: "from-blue-400 to-indigo-600",
-    accentColor: "bg-blue-500",
+    gradient: "from-gray-100 to-slate-200",
+    accentColor: "bg-slate-600",
     icon: BarChart3,
     status: 'live',
     mockup: (
       <div className="w-full h-full relative">
-        {/* Dashboard mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="flex gap-2 mb-3">
-            <div className="w-16 h-full bg-white/20 rounded"></div>
-            <div className="flex-1 space-y-2">
-              <div className="grid grid-cols-4 gap-2">
-                {[1,2,3,4].map(i => (
-                  <div key={i} className="h-14 bg-white/20 rounded"></div>
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4 flex gap-3">
+          <div className="w-20 bg-gray-200 rounded"></div>
+          <div className="flex-1 space-y-3">
+            <div className="grid grid-cols-4 gap-3">
+              {[1,2,3,4].map(i => (
+                <div key={i} className="h-16 bg-gray-100 rounded border border-gray-200"></div>
+              ))}
+            </div>
+            <div className="h-24 bg-gray-50 rounded border border-gray-200 flex items-end p-3">
+              <div className="w-full flex items-end gap-2">
+                {[40, 60, 35, 80, 45, 70, 55].map((h, i) => (
+                  <div key={i} className="flex-1 bg-gray-300 rounded-t" style={{height: `${h}%`}}></div>
                 ))}
-              </div>
-              <div className="h-32 bg-white/10 rounded flex items-end p-2">
-                <div className="w-full flex items-end gap-1">
-                  {[40, 60, 35, 80, 45, 70, 55].map((h, i) => (
-                    <div key={i} className="flex-1 bg-white/30 rounded-t" style={{height: `${h}%`}}></div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
@@ -69,25 +66,24 @@ const clientProjects: ClientProject[] = [
   },
   {
     id: 2,
-    clientName: "Bloom & Co",
+    clientName: "Bloom Boutique",
     projectType: "E-commerce",
     category: "Retail",
     deliverable: "Online Store",
-    gradient: "from-pink-400 to-rose-600",
-    accentColor: "bg-pink-500",
+    gradient: "from-stone-100 to-gray-200",
+    accentColor: "bg-gray-600",
     icon: ShoppingBag,
     status: 'featured',
     mockup: (
       <div className="w-full h-full relative">
-        {/* E-commerce mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="h-6 bg-white/20 rounded mb-3"></div>
-          <div className="grid grid-cols-2 gap-2">
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="h-8 bg-gray-100 rounded mb-3"></div>
+          <div className="grid grid-cols-4 gap-3">
             {[1,2,3,4].map(i => (
-              <div key={i} className="space-y-1">
-                <div className="h-24 bg-white/20 rounded"></div>
-                <div className="h-2 bg-white/30 rounded w-3/4"></div>
-                <div className="h-2 bg-white/20 rounded w-1/2"></div>
+              <div key={i} className="space-y-2">
+                <div className="h-20 bg-gray-100 rounded border border-gray-200"></div>
+                <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                <div className="h-2 bg-gray-150 rounded w-1/2"></div>
               </div>
             ))}
           </div>
@@ -97,28 +93,27 @@ const clientProjects: ClientProject[] = [
   },
   {
     id: 3,
-    clientName: "EduBridge",
-    projectType: "EdTech",
+    clientName: "EduBridge Academy",
+    projectType: "EdTech Platform",
     category: "Education",
     deliverable: "Learning Portal",
-    gradient: "from-green-400 to-emerald-600",
-    accentColor: "bg-green-500",
+    gradient: "from-zinc-100 to-stone-200",
+    accentColor: "bg-zinc-600",
     icon: GraduationCap,
     mockup: (
       <div className="w-full h-full relative">
-        {/* Learning platform mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3 flex gap-2">
-          <div className="w-1/3 space-y-2">
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4 flex gap-3">
+          <div className="w-1/4 space-y-2">
             {[1,2,3,4].map(i => (
-              <div key={i} className="h-7 bg-white/20 rounded"></div>
+              <div key={i} className="h-8 bg-gray-100 rounded border border-gray-200"></div>
             ))}
           </div>
-          <div className="flex-1 space-y-2">
-            <div className="h-24 bg-white/20 rounded"></div>
-            <div className="h-2 bg-white/30 rounded-full"></div>
-            <div className="space-y-1">
-              <div className="h-2 bg-white/20 rounded"></div>
-              <div className="h-2 bg-white/20 rounded w-4/5"></div>
+          <div className="flex-1 space-y-3">
+            <div className="h-24 bg-gray-900 rounded"></div>
+            <div className="h-3 bg-gray-200 rounded-full"></div>
+            <div className="space-y-2">
+              <div className="h-2 bg-gray-150 rounded"></div>
+              <div className="h-2 bg-gray-150 rounded w-4/5"></div>
             </div>
           </div>
         </div>
@@ -127,30 +122,29 @@ const clientProjects: ClientProject[] = [
   },
   {
     id: 4,
-    clientName: "HealthHub",
+    clientName: "HealthHub Clinic",
     projectType: "Healthcare",
     category: "Medical",
     deliverable: "Patient Portal",
-    gradient: "from-red-400 to-pink-600",
-    accentColor: "bg-red-500",
+    gradient: "from-neutral-100 to-gray-200",
+    accentColor: "bg-neutral-600",
     icon: Heart,
     status: 'new',
     mockup: (
       <div className="w-full h-full relative">
-        {/* Healthcare mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            {[1,2,3].map(i => (
-              <div key={i} className="h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                <div className="w-6 h-6 bg-white/30 rounded-full"></div>
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-3 mb-3">
+            {[1,2,3,4].map(i => (
+              <div key={i} className="h-16 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center">
+                <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
               </div>
             ))}
           </div>
-          <div className="space-y-2">
-            <div className="h-20 bg-white/15 rounded"></div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="h-12 bg-white/20 rounded"></div>
-              <div className="h-12 bg-white/20 rounded"></div>
+          <div className="space-y-3">
+            <div className="h-20 bg-gray-100 rounded border border-gray-200"></div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="h-12 bg-gray-100 rounded"></div>
+              <div className="h-12 bg-gray-100 rounded"></div>
             </div>
           </div>
         </div>
@@ -159,20 +153,20 @@ const clientProjects: ClientProject[] = [
   },
   {
     id: 5,
-    clientName: "Creative X",
+    clientName: "Creative Studio",
     projectType: "Portfolio",
     category: "Agency",
     deliverable: "Showcase Site",
-    gradient: "from-purple-400 to-violet-600",
-    accentColor: "bg-purple-500",
+    gradient: "from-slate-100 to-zinc-200",
+    accentColor: "bg-gray-700",
     icon: Palette,
     mockup: (
       <div className="w-full h-full relative">
-        {/* Portfolio mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="grid grid-cols-2 gap-2">
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="h-8 bg-gray-900 rounded mb-3"></div>
+          <div className="grid grid-cols-3 gap-3">
             {[1,2,3,4,5,6].map(i => (
-              <div key={i} className="h-20 bg-white/20 rounded"></div>
+              <div key={i} className="h-16 bg-gray-100 rounded border border-gray-200"></div>
             ))}
           </div>
         </div>
@@ -185,46 +179,48 @@ const clientProjects: ClientProject[] = [
     projectType: "Fitness App",
     category: "Health",
     deliverable: "Mobile App",
-    gradient: "from-orange-400 to-red-600",
-    accentColor: "bg-orange-500",
+    gradient: "from-gray-100 to-neutral-200",
+    accentColor: "bg-gray-600",
     icon: Smartphone,
     status: 'live',
     mockup: (
       <div className="w-full h-full relative flex items-center justify-center">
-        {/* Mobile app mockup */}
-        <div className="w-24 h-40 bg-black/20 rounded-2xl p-1">
-          <div className="w-full h-full bg-white/10 backdrop-blur rounded-2xl p-2">
-            <div className="space-y-2">
-              <div className="h-4 bg-white/30 rounded"></div>
-              <div className="h-20 bg-white/20 rounded"></div>
-              <div className="grid grid-cols-2 gap-1">
-                <div className="h-8 bg-white/25 rounded"></div>
-                <div className="h-8 bg-white/25 rounded"></div>
+        <div className="flex gap-4">
+          {[1,2].map(i => (
+            <div key={i} className="w-24 h-40 bg-gray-900 rounded-2xl p-1">
+              <div className="w-full h-full bg-white rounded-2xl p-2">
+                <div className="space-y-2">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-20 bg-gray-100 rounded"></div>
+                  <div className="grid grid-cols-2 gap-1">
+                    <div className="h-8 bg-gray-150 rounded"></div>
+                    <div className="h-8 bg-gray-150 rounded"></div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     )
   },
   {
     id: 7,
-    clientName: "Legal Pro",
+    clientName: "Legal Associates",
     projectType: "Law Firm",
     category: "Legal",
     deliverable: "Corporate Site",
-    gradient: "from-slate-500 to-gray-700",
-    accentColor: "bg-slate-600",
+    gradient: "from-stone-100 to-neutral-200",
+    accentColor: "bg-stone-700",
     icon: Briefcase,
     mockup: (
       <div className="w-full h-full relative">
-        {/* Corporate site mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="h-8 bg-white/20 rounded mb-3"></div>
-          <div className="h-24 bg-white/15 rounded mb-3"></div>
-          <div className="grid grid-cols-3 gap-2">
-            {[1,2,3].map(i => (
-              <div key={i} className="h-12 bg-white/20 rounded"></div>
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="h-10 bg-gray-900 rounded mb-3"></div>
+          <div className="h-24 bg-gray-50 rounded border border-gray-200 mb-3"></div>
+          <div className="grid grid-cols-4 gap-3">
+            {[1,2,3,4].map(i => (
+              <div key={i} className="h-12 bg-gray-100 rounded"></div>
             ))}
           </div>
         </div>
@@ -233,25 +229,25 @@ const clientProjects: ClientProject[] = [
   },
   {
     id: 8,
-    clientName: "DataFlow",
-    projectType: "Analytics",
+    clientName: "DataFlow Analytics",
+    projectType: "Analytics Tool",
     category: "Tech",
     deliverable: "Dashboard",
-    gradient: "from-cyan-400 to-blue-600",
-    accentColor: "bg-cyan-500",
+    gradient: "from-zinc-100 to-gray-200",
+    accentColor: "bg-zinc-700",
     icon: BarChart3,
     mockup: (
       <div className="w-full h-full relative">
-        {/* Analytics mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="grid grid-cols-2 gap-2 mb-2">
-            <div className="h-16 bg-white/20 rounded"></div>
-            <div className="h-16 bg-white/20 rounded"></div>
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-3 mb-3">
+            <div className="h-16 bg-gray-100 rounded border border-gray-200"></div>
+            <div className="h-16 bg-gray-100 rounded border border-gray-200"></div>
+            <div className="h-16 bg-gray-100 rounded border border-gray-200"></div>
           </div>
-          <div className="h-24 bg-white/15 rounded p-2">
-            <div className="h-full flex items-end gap-1">
-              {[60, 40, 70, 45, 80, 55].map((h, i) => (
-                <div key={i} className="flex-1 bg-white/30 rounded-t" style={{height: `${h}%`}}></div>
+          <div className="h-24 bg-gray-50 rounded border border-gray-200 p-3">
+            <div className="h-full flex items-end gap-2">
+              {[60, 40, 70, 45, 80, 55, 65].map((h, i) => (
+                <div key={i} className="flex-1 bg-gray-300 rounded-t" style={{height: `${h}%`}}></div>
               ))}
             </div>
           </div>
@@ -262,25 +258,24 @@ const clientProjects: ClientProject[] = [
   {
     id: 9,
     clientName: "TravelEase",
-    projectType: "Travel Site",
+    projectType: "Travel Platform",
     category: "Tourism",
-    deliverable: "Booking Platform",
-    gradient: "from-teal-400 to-blue-600",
-    accentColor: "bg-teal-500",
+    deliverable: "Booking System",
+    gradient: "from-neutral-100 to-stone-200",
+    accentColor: "bg-neutral-700",
     icon: Globe,
     status: 'live',
     mockup: (
       <div className="w-full h-full relative">
-        {/* Travel site mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="h-20 bg-white/20 rounded mb-2"></div>
-          <div className="flex gap-2 mb-2">
-            <div className="flex-1 h-6 bg-white/25 rounded"></div>
-            <div className="w-20 h-6 bg-white/30 rounded"></div>
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="h-20 bg-gray-100 rounded border border-gray-200 mb-3"></div>
+          <div className="flex gap-3 mb-3">
+            <div className="flex-1 h-8 bg-gray-150 rounded"></div>
+            <div className="w-24 h-8 bg-gray-200 rounded"></div>
           </div>
-          <div className="grid grid-cols-3 gap-2">
-            {[1,2,3].map(i => (
-              <div key={i} className="h-16 bg-white/20 rounded"></div>
+          <div className="grid grid-cols-4 gap-3">
+            {[1,2,3,4].map(i => (
+              <div key={i} className="h-16 bg-gray-100 rounded"></div>
             ))}
           </div>
         </div>
@@ -289,24 +284,23 @@ const clientProjects: ClientProject[] = [
   },
   {
     id: 10,
-    clientName: "SocialHub",
-    projectType: "Community",
+    clientName: "Community Hub",
+    projectType: "Social Platform",
     category: "Social",
-    deliverable: "Social Platform",
-    gradient: "from-violet-400 to-purple-600",
-    accentColor: "bg-violet-500",
+    deliverable: "Community Portal",
+    gradient: "from-gray-100 to-zinc-200",
+    accentColor: "bg-gray-700",
     icon: Users,
     mockup: (
       <div className="w-full h-full relative">
-        {/* Social platform mockup */}
-        <div className="absolute inset-2 bg-white/10 backdrop-blur rounded-lg p-3">
-          <div className="space-y-2">
+        <div className="absolute inset-3 bg-white/60 backdrop-blur rounded-lg p-4">
+          <div className="space-y-3">
             {[1,2,3].map(i => (
-              <div key={i} className="flex gap-2">
-                <div className="w-8 h-8 bg-white/25 rounded-full"></div>
+              <div key={i} className="flex gap-3">
+                <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
                 <div className="flex-1">
-                  <div className="h-3 bg-white/20 rounded w-1/3 mb-1"></div>
-                  <div className="h-12 bg-white/15 rounded"></div>
+                  <div className="h-3 bg-gray-150 rounded w-1/3 mb-2"></div>
+                  <div className="h-14 bg-gray-100 rounded border border-gray-200"></div>
                 </div>
               </div>
             ))}
@@ -356,10 +350,10 @@ export function ProductShowcase() {
               className={cn(
                 "flex gap-6 py-4",
                 isPaused ? "[animation-play-state:paused]" : "[animation-play-state:running]",
-                "animate-[infiniteScroll_40s_linear_infinite]"
+                "animate-[infiniteScroll_45s_linear_infinite]"
               )}
               style={{
-                width: `calc(${infiniteProjects.length} * 340px)`,
+                width: `calc(${infiniteProjects.length} * 500px)`,
               }}
             >
               {infiniteProjects.map((project, index) => (
@@ -414,18 +408,18 @@ function ProjectCard({
 }) {
   return (
     <motion.div
-      className="flex-shrink-0 w-[320px] h-[400px] relative group cursor-pointer"
+      className="flex-shrink-0 w-[480px] h-[280px] relative group cursor-pointer"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
     >
       {/* Main Visual Card */}
       <div className={cn(
-        "w-full h-full rounded-2xl overflow-hidden relative",
+        "w-full h-full rounded-xl overflow-hidden relative",
         "bg-gradient-to-br",
         project.gradient,
-        "shadow-lg hover:shadow-2xl transition-all duration-300"
+        "shadow-lg hover:shadow-xl transition-all duration-300"
       )}>
         {/* Status Badge */}
         {project.status && (
@@ -435,10 +429,10 @@ function ProjectCard({
             transition={{ duration: 0.2 }}
             className="absolute top-4 right-4 z-20"
           >
-            <Badge className="bg-white/90 backdrop-blur text-foreground border-0">
-              {project.status === 'live' && '🚀 Live'}
-              {project.status === 'new' && '✨ New'}
-              {project.status === 'featured' && '⭐ Featured'}
+            <Badge variant="secondary" className="bg-white/90 backdrop-blur text-foreground border-0">
+              {project.status === 'live' && 'LIVE'}
+              {project.status === 'new' && 'NEW'}
+              {project.status === 'featured' && 'FEATURED'}
             </Badge>
           </motion.div>
         )}
@@ -457,22 +451,22 @@ function ProjectCard({
             stiffness: 400,
             damping: 30
           }}
-          className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-sm"
+          className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black/80 via-black/60 to-transparent backdrop-blur-sm"
         >
-          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3">
+          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
             {/* Client Name & Type */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
               transition={{ delay: 0.1 }}
             >
-              <h3 className="text-2xl font-bold text-white mb-1">
+              <h3 className="text-xl font-semibold text-white mb-1">
                 {project.clientName}
               </h3>
               <div className="flex items-center gap-3">
-                <span className="text-white/80 text-sm">{project.projectType}</span>
-                <span className="text-white/40">•</span>
-                <span className="text-white/80 text-sm">{project.category}</span>
+                <span className="text-white/70 text-sm">{project.projectType}</span>
+                <span className="text-white/30">•</span>
+                <span className="text-white/70 text-sm">{project.category}</span>
               </div>
             </motion.div>
 
@@ -480,18 +474,18 @@ function ProjectCard({
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.15 }}
               className="flex items-center justify-between"
             >
               <div className="flex items-center gap-2">
-                <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", project.accentColor)}>
-                  <project.icon className="w-4 h-4 text-white" />
+                <div className={cn("w-7 h-7 rounded-md flex items-center justify-center", project.accentColor)}>
+                  <project.icon className="w-3.5 h-3.5 text-white" />
                 </div>
-                <span className="text-white/90 text-sm font-medium">
+                <span className="text-white/80 text-sm">
                   {project.deliverable}
                 </span>
               </div>
-              <ArrowUpRight className="w-5 h-5 text-white/60" />
+              <ArrowUpRight className="w-4 h-4 text-white/50" />
             </motion.div>
           </div>
         </motion.div>
