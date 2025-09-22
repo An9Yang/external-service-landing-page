@@ -428,8 +428,8 @@ function ProjectCard({
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       animate={{
-        scale: isHovered ? 1.12 : isAnyHovered ? 0.96 : 1,
-        opacity: isHovered ? 1 : isAnyHovered ? 0.7 : 1,
+        scale: isHovered ? 1.25 : isAnyHovered ? 0.92 : 1,
+        opacity: isHovered ? 1 : isAnyHovered ? 0.6 : 1,
         zIndex: isHovered ? 10 : 0,
       }}
       transition={{
@@ -458,7 +458,7 @@ function ProjectCard({
         )}
         animate={{
           boxShadow: isHovered
-            ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+            ? "0 35px 70px -15px rgba(0, 0, 0, 0.3)"
             : "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
         }}
         transition={{
@@ -499,7 +499,7 @@ function ProjectCard({
         <motion.div
           className="absolute inset-0"
           animate={{
-            scale: isHovered ? 1.05 : 1
+            scale: isHovered ? 1.08 : 1
           }}
           transition={{
             scale: {

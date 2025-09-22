@@ -43,7 +43,7 @@ export function LogoCarousel() {
               className={cn(
                 "flex gap-12 items-center py-4",
                 isPaused ? "[animation-play-state:paused]" : "[animation-play-state:running]",
-                "animate-[infiniteScroll_30s_linear_infinite]"
+                "animate-[infiniteScrollReverse_30s_linear_infinite]"
               )}
               style={{
                 width: `calc(${infiniteLogos.length} * 160px)`,

@@ -8,6 +8,7 @@ import { LogoCarousel } from "@/components/logo-carousel";
 import { ProductShowcase } from "@/components/product-showcase";
 import { StatsSection } from "@/components/stats-section";
 import { UseCases } from "@/components/use-cases";
+import { Testimonials } from "@/components/testimonials";
 import { FinalCTA } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
 
@@ -33,6 +34,9 @@ export default function Home() {
 
         {/* Use Cases - 展示服务能力 */}
         <UseCases />
+
+        {/* Customer Testimonials - 客户评价 */}
+        <Testimonials />
 
         {/* 最终 CTA 区域 */}
         <FinalCTA />

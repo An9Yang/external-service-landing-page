@@ -177,6 +177,15 @@
       transform: translateX(-50%);
     }
   }
+
+  @keyframes infiniteScrollReverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 /* Notion-style Background Patterns */

@@ -21,7 +21,7 @@ export function FinalCTA() {
 
         {/* CTA 按钮 */}
         <Button className="bg-background text-foreground hover:bg-background/90 font-medium px-8 py-4 rounded-full border-0 text-lg h-auto">
-          Start Your Project
+          Contact Us
           <ArrowRight className="w-5 h-5 ml-2" />
         </Button>
       </div>
