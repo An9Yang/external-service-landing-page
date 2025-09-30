@@ -120,12 +120,12 @@ export function HeroSection() {
                 transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
                 className="group"
               >
-                <div className="p-6 rounded-xl bg-muted/20 border border-border/50 hover:border-border hover:shadow-md transition-all duration-300">
+                <div className="p-6 rounded-xl bg-muted/20 border border-border/50 hover:border-border hover:shadow-md transition-all duration-300 h-full flex flex-col">
                   <feature.icon className={`w-8 h-8 ${feature.iconColor} mb-3`} />
                   <h3 className="font-semibold text-foreground mb-1">
                     {feature.label}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground flex-1">
                     {feature.description}
                   </p>
                 </div>

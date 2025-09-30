@@ -161,9 +161,9 @@ export function UseCases() {
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full" 
+                <Button
+                  variant="outline"
+                  className="w-full"
                   asChild
                 >
                   <a href={useCase.bookUrl} target="_blank" rel="noreferrer">
