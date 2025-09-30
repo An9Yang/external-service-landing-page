@@ -1,5 +1,5 @@
 /**
- * Step1 Hero Section - Professional Outsourcing Agency
+ * Step1 Hero Section - Professional Outsourcing Agency (English Only)
  */
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,30 +11,25 @@ import {
   TrendingUp
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-
-
 
 export function HeroSection() {
-  const { t } = useLanguage();
-
   const features = [
     {
       icon: Clock,
-      label: t('hero.features.feature1.label'),
-      description: t('hero.features.feature1.description'),
+      label: "7-14 Days Online",
+      description: "Standardized process, fastest two-week delivery for personal portfolios or client portals",
       iconColor: "text-blue-500"
     },
     {
       icon: Code,
-      label: t('hero.features.feature2.label'),
-      description: t('hero.features.feature2.description'),
+      label: "Zero-Code Maintenance",
+      description: "Update content directly in Notion / Airtable after launch, instant sync",
       iconColor: "text-green-500"
     },
     {
       icon: TrendingUp,
-      label: t('hero.features.feature3.label'),
-      description: t('hero.features.feature3.description'),
+      label: "Multi-Channel Integration",
+      description: "Stripe payments, Calendly booking, automated reminders configured once",
       iconColor: "text-purple-500"
     }
   ];
@@ -60,7 +55,7 @@ export function HeroSection() {
           >
             <Badge variant="outline" className="px-4 py-1.5 border-border/60">
               <Star className="w-3.5 h-3.5 mr-1.5 fill-foreground/60 text-foreground/60" />
-              {t('hero.badge')}
+              Notion / Airtable Website Experts
             </Badge>
           </motion.div>
 
@@ -72,9 +67,9 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight"
             >
-              {t('hero.title')}
+              Stop waiting for developers.
               <span className="block text-muted-foreground mt-2">
-                {t('hero.subtitle')}
+                Your website, your updates.
               </span>
             </motion.h1>
 
@@ -84,7 +79,7 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
             >
-              {t('hero.description')}
+              We handle the setup and integration to seamlessly sync your Notion / Airtable content to your website. No coding required, maintain your site like editing a document.
             </motion.p>
           </div>
 
@@ -101,15 +96,14 @@ export function HeroSection() {
               asChild
             >
               <a href="#case-studies">
-                {t('hero.cta.viewPlans')}
+                See Our Work
                 <ArrowRight className="w-4 h-4 ml-2" />
               </a>
             </Button>
             <Button size="lg" variant="outline" className="border-border px-8" asChild>
-              <a href="#plans">{t('hero.cta.bookDemo')}</a>
+              <a href="#plans">View Service Plans</a>
             </Button>
           </motion.div>
-
 
           {/* Feature Cards */}
           <motion.div
@@ -138,7 +132,6 @@ export function HeroSection() {
               </motion.div>
             ))}
           </motion.div>
-
         </motion.div>
       </div>
     </section>

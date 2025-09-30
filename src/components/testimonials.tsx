@@ -1,10 +1,9 @@
 /**
- * Customer Testimonials Section - Three Column Vertical Scrolling
+ * Customer Testimonials Section - Three Column Vertical Scrolling (English Only)
  */
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Testimonial {
   id: number;
@@ -16,21 +15,54 @@ interface Testimonial {
   rating: number;
 }
 
-
 export function Testimonials() {
-  const { t } = useLanguage();
-
-  // Get testimonials from translations
-  const testimonialsData = t('testimonials.items') as any[];
-  const realTestimonials: Testimonial[] = testimonialsData.map((item, index) => ({
-    id: index + 1,
-    content: item.content,
-    author: item.author,
-    role: item.role,
-    company: item.company,
-    serviceType: item.serviceType,
-    rating: 5
-  }));
+  const realTestimonials: Testimonial[] = [
+    {
+      id: 1,
+      content: "The client portal Step1 built for us has been a total game-changer. It's not just a tool; it's our new storefront. It makes our small agency look like a million-dollar firm and has completely streamlined how we collaborate with clients. No more chaotic email threads.",
+      author: "David Chen",
+      role: "Founder",
+      company: "Marketing Agency",
+      serviceType: "Client Portal",
+      rating: 5
+    },
+    {
+      id: 2,
+      content: "The best part? If I can use Notion, I can run my own client portal. The fact that I can update project statuses and upload files for my clients just by editing a Notion page is pure magic. It saves me at least 5 hours a week on manual reporting.",
+      author: "Sarah Jones",
+      role: "Independent Business Consultant",
+      company: "Consulting Services",
+      serviceType: "Client Portal",
+      rating: 5
+    },
+    {
+      id: 3,
+      content: "I needed a professional portfolio site, fast. For $9.9, I honestly didn't expect much, but the result blew me away. It's beautiful, easy for me to update with new work from Notion, and I genuinely believe it helped me land two new clients last month.",
+      author: "Emily Carter",
+      role: "Freelance Graphic Designer",
+      company: "Creative Studio",
+      serviceType: "Personal Portfolio",
+      rating: 5
+    },
+    {
+      id: 4,
+      content: "I was hesitant about the $199 price at first, but it paid for itself with the very first new client I onboarded. The professional portal gave them so much confidence in our process. It's not an expense; it's an investment in client trust.",
+      author: "Michael Rodriguez",
+      role: "Founder",
+      company: "Small Real Estate Agency",
+      serviceType: "Client Portal",
+      rating: 5
+    },
+    {
+      id: 5,
+      content: "The collaboration process with the Step1 team was incredibly smooth and professional. They didn't just build a website; they took the time to understand my business and my clients' needs. You can tell they genuinely care about your success.",
+      author: "Chloe Dubois",
+      role: "Startup Advisor",
+      company: "Advisory Services",
+      serviceType: "Client Portal",
+      rating: 5
+    }
+  ];
 
   // Duplicate and mix testimonials to create more variety for the columns
   const testimonials: Testimonial[] = [
@@ -147,13 +179,13 @@ export function Testimonials() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t('testimonials.title')}
+              Client Success Stories
               <span className="block text-lg md:text-xl text-muted-foreground mt-2 font-normal">
-                {t('testimonials.subtitle')}
+                Real Success Stories from Real Clients
               </span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t('testimonials.description')}
+              Hear from entrepreneurs and business owners who achieved self-updating with Step1
             </p>
           </motion.div>
 

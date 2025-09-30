@@ -1,36 +1,31 @@
 /**
- * Value Prop Section - 核心价值阐述
- * 展示 Notion/Airtable 编辑 → 网站实时同步的核心功能
+ * Value Prop Section - Core Value Proposition (English Only)
+ * Shows Notion/Airtable editing → real-time website sync functionality
  */
 import { motion } from "framer-motion";
 import { ArrowRight, FileEdit, Globe, Zap, CheckCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useLanguage } from "@/contexts/LanguageContext";
-
 
 export function ValueProp() {
-  const { t } = useLanguage();
-
   const features = [
     {
       icon: FileEdit,
-      title: t('valueProp.features.edit.title'),
-      description: t('valueProp.features.edit.description')
+      title: "Edit in Notion",
+      description: "Update content like writing docs"
     },
     {
       icon: Zap,
-      title: t('valueProp.features.sync.title'),
-      description: t('valueProp.features.sync.description')
+      title: "Real-time Sync",
+      description: "Auto-sync to website"
     },
     {
       icon: Globe,
-      title: t('valueProp.features.publish.title'),
-      description: t('valueProp.features.publish.description')
+      title: "Instant Publish",
+      description: "Visitors see updates instantly"
     }
   ];
 
   return (
-    <section className="min-h-screen flex items-center py-20 bg-background">
+    <section id="value" className="min-h-screen flex items-center py-20 bg-background">
       <div className="container-width w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,13 +35,13 @@ export function ValueProp() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('valueProp.title')}
+            Effortless Updates, Total Control
             <span className="block text-lg md:text-xl text-muted-foreground mt-2 font-normal">
-              {t('valueProp.subtitle')}
+              Simple as Editing a Document
             </span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('valueProp.description')}
+            No code required. Update your website like editing a document. We handle the complex tech, you simply manage content like editing a Notion doc.
           </p>
         </motion.div>
 
@@ -78,7 +73,7 @@ export function ValueProp() {
                         <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                         <div className="w-3 h-3 rounded-full bg-green-400"></div>
                       </div>
-                      <span className="text-sm text-muted-foreground ml-2">{t('valueProp.notionEditor')}</span>
+                      <span className="text-sm text-muted-foreground ml-2">Notion Editor</span>
                     </div>
                   </div>
 
@@ -103,7 +98,7 @@ export function ValueProp() {
                       className="space-y-2"
                     >
                       <div className="h-4 bg-blue-500/20 border-l-2 border-blue-500 rounded px-2 flex items-center">
-                        <span className="text-xs text-blue-600">{t('valueProp.editing')}</span>
+                        <span className="text-xs text-blue-600">Editing...</span>
                       </div>
                     </motion.div>
 
@@ -153,7 +148,7 @@ export function ValueProp() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex-1 max-w-lg"
+                className="flex-1 max-w-lg relative"
               >
                 <div className="rounded-xl border border-border bg-background shadow-xl overflow-hidden">
                   {/* Browser Header */}
@@ -189,7 +184,7 @@ export function ValueProp() {
                       <div className="h-4 bg-muted/50 rounded w-full"></div>
                       <div className="h-4 bg-muted/50 rounded w-5/6"></div>
                       <div className="h-4 bg-green-500/20 rounded w-4/6 border border-green-500/30">
-                        <div className="text-xs text-green-600 px-2 py-0.5">{t('valueProp.synced')}</div>
+                        <div className="text-xs text-green-600 px-2 py-0.5">Synced</div>
                       </div>
                     </motion.div>
 
@@ -247,7 +242,6 @@ export function ValueProp() {
             </motion.div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );

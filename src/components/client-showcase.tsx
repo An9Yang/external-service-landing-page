@@ -1,13 +1,11 @@
 /**
- * Client Showcase - Horizontal Infinite Scrolling Carousel
- * 横向无限滚动传送带展示真实客户项目
+ * Client Showcase - Horizontal Infinite Scrolling Carousel (English Only)
  */
 import { motion } from "framer-motion";
 import { ExternalLink, Star, CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ClientProject {
   id: number;
@@ -22,85 +20,81 @@ interface ClientProject {
   clientRole?: string;
 }
 
-
 export function ClientShowcase() {
-  const { t } = useLanguage();
   const [isPaused, setIsPaused] = useState(false);
 
-  // Get project data from translations
-  const projectsData = t('clientShowcase.projects') as any[];
   const clientProjects: ClientProject[] = [
     {
       id: 1,
-      title: projectsData[0]?.title || "Rahibul Haque",
-      description: projectsData[0]?.description || "设计师个人作品集网站",
-      category: t('clientShowcase.categories.portfolio'),
-      imageUrl: "https://placehold.co/800x600/1e293b/e2e8f0?text=Rahibul+Haque",
+      title: "Rahibul Haque",
+      description: "Designer's personal portfolio website",
+      category: "Personal Portfolio",
+      imageUrl: "https://static.step1.dev/0650509f66dc71b1da83da5d2c2e6e55",
       demoUrl: "https://step1-i9iy7ta-dy7abs67pg33.deno.dev/",
-      tags: projectsData[0]?.tags || ["Notion同步", "作品展示"],
-      testimonial: projectsData[0]?.testimonial,
-      clientName: projectsData[0]?.clientName,
-      clientRole: projectsData[0]?.clientRole
+      tags: ["Notion Sync", "Portfolio Showcase"],
+      testimonial: "After launch, I just update content in Notion and the website syncs automatically.",
+      clientName: "Rahibul",
+      clientRole: "UI/UX Designer"
     },
     {
       id: 2,
-      title: projectsData[1]?.title || "Solar Energy Portal",
-      description: projectsData[1]?.description || "太阳能公司管理系统",
-      category: t('clientShowcase.categories.portal'),
-      imageUrl: "https://placehold.co/800x600/0f766e/e2e8f0?text=Solar+Energy+Portal",
+      title: "Solar Energy Portal",
+      description: "Solar company management system",
+      category: "Client Portal",
+      imageUrl: "https://static.step1.dev/5978a8cc582dbf8b132b87a0bae92db4",
       demoUrl: "https://step1-gpdqxzo-wkwp9y7pydha.deno.dev/",
-      tags: projectsData[1]?.tags || ["库存管理", "销售追踪"],
-      testimonial: projectsData[1]?.testimonial,
-      clientName: projectsData[1]?.clientName,
-      clientRole: projectsData[1]?.clientRole
+      tags: ["Inventory Management", "Sales Tracking"],
+      testimonial: "Inventory, sales, supplier management all integrated, 200% efficiency boost.",
+      clientName: "Li Wei",
+      clientRole: "Operations Manager"
     },
     {
       id: 3,
-      title: projectsData[2]?.title || "Alex - UX Designer",
-      description: projectsData[2]?.description || "品牌设计师展示平台",
-      category: t('clientShowcase.categories.portfolio'),
-      imageUrl: "https://placehold.co/800x600/1e293b/e2e8f0?text=Alex+UX+Designer",
+      title: "Alex - UX Designer",
+      description: "Brand designer showcase platform",
+      category: "Personal Portfolio",
+      imageUrl: "https://static.step1.dev/3dfafd036d6f899e39861feac6f7ad8d",
       demoUrl: "https://step1-jmtt2j5-6jrhdkacbjtw.deno.dev/",
-      tags: projectsData[2]?.tags || ["品牌设计", "案例展示"],
-      testimonial: projectsData[2]?.testimonial,
-      clientName: projectsData[2]?.clientName,
-      clientRole: projectsData[2]?.clientRole
+      tags: ["Brand Design", "Case Studies"],
+      testimonial: "15 years of experience perfectly presented, 3x increase in client inquiries.",
+      clientName: "Alex Chen",
+      clientRole: "Brand Designer"
     },
     {
       id: 4,
-      title: projectsData[3]?.title || "Agency Dashboard",
-      description: projectsData[3]?.description || "代理公司协作平台",
-      category: t('clientShowcase.categories.portal'),
-      imageUrl: "https://placehold.co/800x600/0f766e/e2e8f0?text=Agency+Dashboard",
+      title: "Agency Dashboard",
+      description: "Agency collaboration platform",
+      category: "Client Portal",
+      imageUrl: "https://static.step1.dev/78c455563329478e35494d944a04fbad",
       demoUrl: "https://step1-dh2tfox-wq70zafdmzs3.deno.dev/#/dashboard",
-      tags: projectsData[3]?.tags || ["项目管理", "团队协作"],
-      testimonial: projectsData[3]?.testimonial,
-      clientName: projectsData[3]?.clientName,
-      clientRole: projectsData[3]?.clientRole
+      tags: ["Project Management", "Team Collaboration"],
+      testimonial: "Project progress, team collaboration, data analysis all in one solution.",
+      clientName: "Alex Johnson",
+      clientRole: "Agency Director"
     },
     {
       id: 5,
-      title: projectsData[4]?.title || "Independent Designer",
-      description: projectsData[4]?.description || "独立创意工作室",
-      category: t('clientShowcase.categories.portfolio'),
-      imageUrl: "https://placehold.co/800x600/1e293b/e2e8f0?text=Independent+Designer",
+      title: "Independent Designer",
+      description: "Independent creative studio",
+      category: "Personal Portfolio",
+      imageUrl: "https://static.step1.dev/b3080f6b9b8ee5b89deaf138d2e3662c",
       demoUrl: "https://step1-c0yhu52-qx57kx63hnhc.deno.dev/",
-      tags: projectsData[4]?.tags || ["创意展示", "客户合作"],
-      testimonial: projectsData[4]?.testimonial,
-      clientName: projectsData[4]?.clientName,
-      clientRole: projectsData[4]?.clientRole
+      tags: ["Creative Showcase", "Client Collaboration"],
+      testimonial: "Perfectly showcases our brand personality, clients remember us.",
+      clientName: "Studio Lead",
+      clientRole: "Creative Director"
     },
     {
       id: 6,
-      title: projectsData[5]?.title || "Enterprise Portal",
-      description: projectsData[5]?.description || "企业级管理平台",
-      category: t('clientShowcase.categories.portal'),
-      imageUrl: "https://placehold.co/800x600/0f766e/e2e8f0?text=Enterprise+Portal",
+      title: "Enterprise Portal",
+      description: "Enterprise-level management platform",
+      category: "Client Portal",
+      imageUrl: "https://static.step1.dev/5e2c4638f041964e767ca2f0e8109a41",
       demoUrl: "https://step1-dh2tfox-3938e3dw9vzb.deno.dev/login",
-      tags: projectsData[5]?.tags || ["Airtable集成", "权限管理"],
-      testimonial: projectsData[5]?.testimonial,
-      clientName: projectsData[5]?.clientName,
-      clientRole: projectsData[5]?.clientRole
+      tags: ["Airtable Integration", "Access Control"],
+      testimonial: "Seamless Airtable integration, team collaboration efficiency doubled.",
+      clientName: "Enterprise Team",
+      clientRole: "Product Manager"
     }
   ];
 
@@ -133,7 +127,7 @@ export function ClientShowcase() {
         <div className="absolute top-3 left-3 z-10">
           <span className={cn(
             "px-3 py-1.5 text-xs font-semibold rounded-full shadow-md",
-            project.category === t('clientShowcase.categories.portfolio')
+            project.category === "Personal Portfolio"
               ? "bg-blue-500 text-white"
               : "bg-emerald-500 text-white"
           )}>
@@ -151,7 +145,7 @@ export function ClientShowcase() {
           >
             <a href={project.demoUrl} target="_blank" rel="noreferrer">
               <ExternalLink className="w-3 h-3 mr-1" />
-              {t('clientShowcase.liveDemo')}
+              Live Demo
             </a>
           </Button>
         </div>
@@ -215,9 +209,9 @@ export function ClientShowcase() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('clientShowcase.title')}
+            See What We've Built for Clients
             <span className="block text-lg md:text-xl text-muted-foreground mt-2 font-normal">
-              {t('clientShowcase.subtitle')}
+              Loved by Creators & Consultants
             </span>
           </h2>
 
@@ -225,11 +219,11 @@ export function ClientShowcase() {
           <div className="flex items-center justify-center gap-8 mt-6">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-green-500" />
-              <span className="text-foreground font-semibold">{t('clientShowcase.stats.projects')}</span>
+              <span className="text-foreground font-semibold">40+ Projects Delivered</span>
             </div>
             <div className="flex items-center gap-2">
               <Star className="w-5 h-5 fill-yellow-500 text-yellow-500" />
-              <span className="text-foreground font-semibold">{t('clientShowcase.stats.satisfaction')}</span>
+              <span className="text-foreground font-semibold">4.9/5 Satisfaction</span>
             </div>
           </div>
         </motion.div>
@@ -277,7 +271,7 @@ export function ClientShowcase() {
           className="text-center mt-12"
         >
           <p className="text-sm text-muted-foreground mb-6">
-            {isPaused ? t('clientShowcase.pauseHint') : t('clientShowcase.scrollHint')}
+            {isPaused ? "Paused - Click cards to view sites" : "Hover to pause scrolling"}
           </p>
 
           {/* CTA Button */}
@@ -287,7 +281,7 @@ export function ClientShowcase() {
             asChild
           >
             <a href="#plans">
-              {t('clientShowcase.cta')}
+              Start Building Your Website
             </a>
           </Button>
         </motion.div>

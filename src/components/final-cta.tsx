@@ -1,5 +1,5 @@
 /**
- * Final CTA Section - 纯粹的转化组件
+ * Final CTA Section - Pure Conversion Component (English Only)
  */
 import { Button } from "@/components/ui/button";
 import { Mail, CalendarClock } from "lucide-react";
@@ -16,16 +16,16 @@ export function FinalCTA() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* 主标题 */}
+          {/* Main Heading */}
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            准备好让你的网站自主更新了吗？
+            Ready to Make Your Website Self-Updating?
           </h2>
           <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-            预约 30 分钟免费咨询，我们会评估你的 Notion / Airtable 结构，
-            给出最适合的交付方案与时间表。
+            Book a free 30-minute consultation. We'll review your Notion / Airtable structure
+            and provide the best delivery plan and timeline.
           </p>
 
-          {/* CTA 按钮组 */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
               size="lg"
@@ -34,7 +34,7 @@ export function FinalCTA() {
             >
               <a href="https://calendly.com/step1/discovery" target="_blank" rel="noreferrer">
                 <CalendarClock className="w-5 h-5 mr-2" />
-                预约 30 分钟免费咨询
+                Book 30-Min Free Consultation
               </a>
             </Button>
             <Button
@@ -45,7 +45,7 @@ export function FinalCTA() {
             >
               <a href="mailto:outsourcing@step1.so">
                 <Mail className="w-5 h-5 mr-2" />
-                发送项目需求
+                Send Project Request
               </a>
             </Button>
           </div>

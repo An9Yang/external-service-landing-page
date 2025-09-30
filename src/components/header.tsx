@@ -1,17 +1,15 @@
 /**
- * Step1 Header Component - Notion-inspired Minimal Design with Language Toggle
+ * Step1 Header Component - Clean Minimal Design (English Only)
  */
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { Menu, Globe } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,10 +18,6 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'zh' ? 'en' : 'zh');
-  };
 
   return (
     <header className={cn(
@@ -45,35 +39,24 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#case-studies" className="text-muted-foreground hover:text-foreground transition-colors">
-              {t('header.caseStudies')}
+              Case Studies
             </a>
             <a href="#value" className="text-muted-foreground hover:text-foreground transition-colors">
-              {t('header.howItWorks')}
+              How It Works
             </a>
             <a href="#plans" className="text-muted-foreground hover:text-foreground transition-colors">
-              {t('header.pricing')}
+              Pricing
             </a>
             <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">
-              {t('header.faq')}
+              FAQ
             </a>
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* Language Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
-            >
-              <Globe className="h-4 w-4" />
-              <span className="text-sm font-medium">{language === 'zh' ? 'EN' : '中文'}</span>
-            </Button>
-
+          <div className="hidden md:flex items-center">
             <Button className="bg-foreground text-background hover:bg-foreground/90 text-sm px-4" asChild>
               <a href="https://calendly.com/step1/discovery" target="_blank" rel="noreferrer">
-                {t('header.bookCall')}
+                Book a Call
               </a>
             </Button>
           </div>
@@ -92,49 +75,34 @@ export function Header() {
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t('header.caseStudies')}
+                  Case Studies
                 </a>
                 <a
                   href="#value"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t('header.howItWorks')}
+                  How It Works
                 </a>
                 <a
                   href="#plans"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t('header.pricing')}
+                  Pricing
                 </a>
                 <a
                   href="#faq"
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t('header.faq')}
+                  FAQ
                 </a>
 
-                <div className="border-t pt-4 mt-4">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      toggleLanguage();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full flex items-center justify-center gap-2"
-                  >
-                    <Globe className="h-4 w-4" />
-                    <span className="text-sm font-medium">{language === 'zh' ? 'Switch to English' : '切换到中文'}</span>
-                  </Button>
-                </div>
-
-                <div className="flex flex-col gap-3 mt-4">
+                <div className="flex flex-col gap-3 mt-6 pt-6 border-t">
                   <Button className="w-full bg-foreground text-background hover:bg-foreground/90" asChild>
                     <a href="https://calendly.com/step1/discovery" target="_blank" rel="noreferrer">
-                      {t('header.bookCall')}
+                      Book a Call
                     </a>
                   </Button>
                 </div>
